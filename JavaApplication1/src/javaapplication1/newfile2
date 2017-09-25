@@ -1,0 +1,35 @@
+map_Codes("T_DICTIONARIES","COBALT","","CPSI",13,msg['transactionType'].toString()) != undefined
+if(msg['cptCode'].toString().length>0 && map_Desc("T_CPTNOLA","COBALT","","CPSI",map_Codes("T_DICTIONARIES","COBALT","","CPSI",12,msg['department'].toString()),msg['cptCode'].toString()) != undefined)
+if(msg['department'].toString().length>0 && map_Codes("T_DICTIONARIES","COBALT","","CPSI",12,msg['department'].toString()) != undefined )
+
+tmp['MSH']['MSH.4']['MSH.4.1'] = map_Codes("T_DICTIONARIES","COBALT","","CPSI",14,msg['facilityCode'].toString());
+channelMap.put('SENDING_FACILITY', map_Codes("T_DICTIONARIES","COBALT","","CPSI",14,msg['facilityCode'].toString()));
+
+tmp['FT1']['FT1.6']['FT1.6.1'] = map_Codes("T_DICTIONARIES","COBALT","","CPSI",13,msg['transactionType'].toString());
+
+var departmentCode = map_Codes("T_DICTIONARIES","COBALT","","CPSI",12,msg['department'].toString());
+
+tmp['FT1']['FT1.7']['FT1.7.1'] = parseInt( map_Codes("T_CPTNOLA","COBALT","","CPSI",channelMap.get("departmentCode"),msg['cptCode'].toString()));
+
+var untimedtrue =  is_untimed("T_CPTNOLA","COBALT","","CPSI",departmentCode,msg['cptCode'].toString());
+
+tmp['PR1']['PR1.3']['PR1.3.2'] = map_Desc("T_CPTNOLA","COBALT","","CPSI",channelMap.get("departmentCode"),msg['cptCode'].toString());
+
+
+
+
+
+
+
+
+
+if(msg['department'].toString().length>0 && map_Codes("T_DICTIONARIES","COBALT","","CPSI",12,msg['transactionType'].toString()) != undefined )
+
+
+
+
+
+
+var result=dbConn.executeUpdate("CREATE TABLE `T_MESSAGES` (`ID` int(11) NOT NULL AUTO_INCREMENT,`MESSAGE_DIRECTION` varchar(20) DEFAULT NULL,`MESSAGE_FORMAT` varchar(20) DEFAULT NULL,`MESSAGE_DATETIME` varchar(30) DEFAULT NULL, `MESSAGE_RECEIVED_DATETIME` varchar(30) DEFAULT NULL,`SENDING_APPLICATION` varchar(100) DEFAULT NULL,`SENDING_FACILITY` varchar(100) DEFAULT NULL,`MESSAGE_TYPE` varchar(10) DEFAULT NULL,`TRIGGER_EVENT` varchar(10) DEFAULT NULL,`MESSAGE_CONTROLID` varchar(40) DEFAULT NULL,`SRC_MESSAGE` text,`SENT_MESSAGE` text,`ACKNOWLEDGEMENT` text,`HL7IMPORTSERVICE_RESPONSE` text,`MESSAGE_STATUS` varchar(20) DEFAULT NULL,`CREATE_USER` varchar(50) DEFAULT NULL,`CREATE_TIMESTAMP` varchar(50) DEFAULT NULL, `update_user` varchar(50) DEFAULT NULL,`update_timestamp` varchar(50) DEFAULT NULL, PRIMARY KEY (`ID`), UNIQUE KEY `ID` (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+		
+Select VAULTMR_CODE_VALUE,VAULTMR_CODE_DESC,IS_ACTIVE from "+TABLENAME+" where COMPANY='"+COMPANY+"' and APPLICATION='"+APPLICATION+"' and CODE_TYPE_GID='"+GID+"' and SOURCE_CODE_VALUE='"+CODE+"'" 

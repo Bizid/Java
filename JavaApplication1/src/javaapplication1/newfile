@@ -1,0 +1,193 @@
+channelMap.put("dataType",validate(connectorMessage.getRaw().getDataType()));
+
+//sendingApplication
+tmp['MSH']['MSH.3']['MSH.3.1'] = "VaultMR";
+channelMap.put('SENDING_APPLICATION',"VaultMR");
+
+//sendingFacility
+//tmp['MSH']['MSH.4']['MSH.4.1'] = map_Codes("T_DICTIONARIES","COBALT","","CPSI",14, msg['facilityCode'].toString());
+//channelMap.put('SENDING_FACILITY',map_Codes("T_DICTIONARIES","COBALT","","CPSI",14, msg['facilityCode'].toString()));
+
+tmp['MSH']['MSH.4']['MSH.4.1'] = getMappedValue("mapCodes","T_DICTIONARIES","COBALT","","CPSI",14,msg['facilityCode'].toString());
+channelMap.put('SENDING_FACILITY',getMappedValue("mapCodes","T_DICTIONARIES","COBALT","","CPSI",14,msg['facilityCode'].toString()));
+
+//tmp['MSH']['MSH.4']['MSH.4.1'] = map_Codes("T_DICTIONARIES","COBALT","","CPSI",14, msg['facilityCode'].toString());
+//msg['facilityCode']
+
+//receivingApplication
+tmp['MSH']['MSH.5']['MSH.5.1'] = "CPSI";
+
+channelMap.put('sendingApplicationId',"CPSI");
+channelMap.put('sendingApplicationName',"CPSI");
+channelMap.put('sendingApplicationIdType',"CPSI");
+//receivingFacility
+tmp['MSH']['MSH.6']['MSH.6.1'] = "Evident Community Hospital";
+channelMap.put('sendingFacilityId',"Evident Community Hospital");
+channelMap.put('sendingFacilityName',"Evident Community Hospital");
+channelMap.put('sendingFacilityIdType',"Evident Community Hospital");
+
+//dateTimeOfMessage
+tmp['MSH']['MSH.7']['MSH.7.1'] = DateUtil.getCurrentDate('yyyyMMddHHmmss-ssss');
+channelMap.put("messageDateTime",DateUtil.getCurrentDate('yyyyMMddHHmmss-ssss'));
+
+
+//security
+tmp['MSH']['MSH.8']['MSH.8.1'] = "AL";
+
+//messageType
+tmp['MSH']['MSH.9']['MSH.9.1'] = "DFT";
+channelMap.put("messageType","DFT");
+
+//triggerEvent
+tmp['MSH']['MSH.9']['MSH.9.2'] = "PO3";
+channelMap.put('triggerEvent',"PO3");
+//MessageStructure 
+tmp['MSH']['MSH.9']['MSH.9.3'] = "DFT_PO3";
+
+//messageControlId  
+tmp['MSH']['MSH.10']['MSH.10.1'] = msg['messageId'];
+channelMap.put('messageIdNumber', msg['messageId']);
+channelMap.put('messageControlId',msg['messageId']);
+//ProcessingId
+tmp['MSH']['MSH.11']['MSH.11.1'] = "T";
+channelMap.put('ProcessingId',"T");
+//VersionId
+tmp['MSH']['MSH.12']['MSH.12.1'] = "2.5.1";
+
+channelMap.put("inbound",validate(connectorMessage.getRawData()));
+
+===============
+//Patient external ID
+
+tmp['FT1']['FT1.1']['FT1.1.1'] = 1;
+
+if(msg['dateOfService'].toString().length>0){
+     tmp['FT1']['FT1.4']['FT1.4.1'] = msg['dateOfService'];
+	tmp['FT1']['FT1.5']['FT1.5.1'] = msg['dateOfService'];
+}
+
+if(msg['transactionType'].toString().length>0){
+	//tmp['FT1']['FT1.6']['FT1.6.1'] = map_Codes("T_DICTIONARIES","COBALT","","CPSI",13, msg['transactionType'].toString());
+	
+	
+	tmp['FT1']['FT1.6']['FT1.6.1'] = getMappedValue("mapCodes","T_DICTIONARIES","COBALT","","CPSI",13,msg['transactionType'].toString());
+}
+
+
+if(msg['department'].toString().length>0){
+	//var departmentCode =  map_Codes("T_DICTIONARIES","COBALT","","CPSI",12, msg['department'].toString());
+	var departmentCode = getMappedValue("mapCodes","T_DICTIONARIES","COBALT","","CPSI",12,msg['department'].toString());
+	tmp['FT1']['FT1.13']['FT1.13.1'] = departmentCode;
+	channelMap.put("departmentCode",departmentCode);
+	
+}
+if(msg['cptCode'].toString().length>0){
+	//tmp['FT1']['FT1.7']['FT1.7.1'] = parseInt(map_Codes("T_CPTSURPRISE","COBALT","","CPSI",channelMap.get("departmentCode"), msg['cptCode'].toString()));
+	tmp['FT1']['FT1.7']['FT1.7.1'] = parseInt(getMappedValue("mapCodes","T_CPTSURPRISE","COBALT","","CPSI",channelMap.get("departmentCode"),msg['cptCode'].toString()));
+}
+
+if(msg['cptCodingSystem'].toString().length>0){
+	tmp['FT1']['FT1.7']['FT1.7.3'] = msg['cptCodingSystem'];
+}
+
+if(msg['timeSpent'].toString().length>0){
+	//var untimedtrue = is_untimed("T_CPTSURPRISE","COBALT","","CPSI",departmentCode,msg['cptCode'].toString());	
+	var untimedtrue =  getMappedValue("isUntimed","T_CPTSURPRISE","COBALT","","CPSI",departmentCode,msg['cptCode'].toString());
+	tmp['FT1']['FT1.10']['FT1.10.1'] =  eight_minute_rule(msg['cptCode'].toString(), msg['timeSpent'].toString(), msg['department'].toString(),untimedtrue);
+//logger.info("sds" + untimedtrue);
+//logger.info('message41' + is_untimed("T_CPTSURPRISE","COBALT","","CPSI",departmentCode,msg['cptCode'].toString()));
+//logger.info('message42' + getMappedValue("isUntimed","T_CPTSURPRISE","COBALT","","CPSI",departmentCode,msg['cptCode'].toString()));
+
+
+}
+
+====================
+if(msg['cptCode'].toString().length>0){
+	tmp['PR1']['PR1.1']['PR1.1.1']= 1;
+	tmp['PR1']['PR1.3']['PR1.3.1'] = msg['cptCode'].toString();
+	
+	//tmp['PR1']['PR1.3']['PR1.3.2'] = map_Desc("T_CPTSURPRISE","COBALT","","CPSI",channelMap.get("departmentCode"), msg['cptCode'].toString());
+
+	tmp['PR1']['PR1.3']['PR1.3.2'] = getMappedValue("mapDesc","T_CPTSURPRISE","COBALT","","CPSI",channelMap.get("departmentCode"),msg['cptCode'].toString());
+}
+
+
+==========
+Filter
+
+//if(msg['transactionType'].toString().length>0 && map_Codes("T_DICTIONARIES","COBALT","","CPSI",13, msg['transactionType'].toString()) != undefined)
+if(msg['transactionType'].toString().length>0 && getMappedValue("mapCodes","T_DICTIONARIES","COBALT","","CPSI",13,msg['transactionType'].toString()) != undefined)
+
+{
+	channelMap.put('FILTER','notfiltered');
+	return true;
+
+}
+channelMap.put('FILTER','filtered');
+logger.info("Error - Filter  - no Transaction type  or code is not mapped");
+channelMap.put('messageIdNumber', msg['messageId']);
+channelMap.put('ErrorMessage','no Transaction type  or code is not mapped');
+return false;
+
+
+==========
+//if(msg['cptCode'].toString().length>0 && map_Desc("T_CPTSURPRISE","COBALT","","CPSI",map_Codes("T_DICTIONARIES","COBALT","","CPSI",12, msg['department'].toString()), msg['cptCode'].toString()) != undefined)
+
+if(msg['cptCode'].toString().length>0 && getMappedValue("mapDesc","T_CPTSURPRISE","COBALT","","CPSI",getMappedValue("mapCodes","T_DICTIONARIES","COBALT","","CPSI",12,msg['department'].toString()),msg['cptCode'].toString()) != undefined)
+{
+	channelMap.put('FILTER','notfiltered');
+	return true;
+
+}
+channelMap.put('FILTER','filtered');
+logger.info("Error - Filter  - no cpt code");
+channelMap.put('messageIdNumber', msg['messageId']);
+channelMap.put('ErrorMessage','no cpt code or code is not mapped');
+return false;
+
+===========
+//if(msg['department'].toString().length>0 && map_Codes("T_DICTIONARIES","COBALT","","CPSI",12, msg['department'].toString()) != undefined )
+if(msg['department'].toString().length>0 && getMappedValue("mapCodes","T_DICTIONARIES","COBALT","","CPSI",12,msg['department'].toString()) != undefined )
+
+{
+	channelMap.put('FILTER','notfiltered');
+	return true;
+
+}
+channelMap.put('FILTER','filtered');
+logger.info("Error - Filter  - no department code");
+channelMap.put('messageIdNumber', msg['messageId']);
+channelMap.put('ErrorMessage','no department code or code is not mapped');
+return false;
+
+
+A18 we need to add something about PV2.8
+MSH|^~\&|CPSI^1.3.6.1.4.1.27248.1.17^ISO|COBALT||Cobalt Surprise - 13060 W Bell Rd, Surprise, AZ 85378|20170831125431-0500||ADT^A18^ADT_A18|2017083112543109|P|2.5.1|||AL|NE
+PID|1||101148^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^MR^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~S0001261^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^VN^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~00001917^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^PN^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~000000000^^^HL7&2.16.840.1.113883.4.1&ISO^SS^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO||CORDOVA^CHUCKY^^^^^L||19810713^YYYYMMDD|M||W^CAUCASIAN/WHITE^CPSI|14828 W DAHLIA DR^^SURPRISE^AZ^85379|||||S^^HL70002||S0001261^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^AN|000000000^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^SS||||||||||||||||||||||||||
+IN1|1|^^CPSI|P|PRIVATE PAY^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^A^P|^^^^^USA^L^^||||^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^L^|||||||CORDOVA^CHUCKY^^^^^L|18^^CPSI|19810713|14828 W DAHLIA DR^^SURPRISE^AZ^85379||||||||||20170831|||||||1234567
+IN2||1|||||||||||||||||||     .00
+IN1|2|^^CPSI|XA|MEDICAID PENDING     - I/P^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^A^XA|^^^^^USA^L^^||6024177670||^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^L^|||||||CORDOVA^CHUCKY^^^^^L|18^^CPSI|19810713|14828 W DAHLIA DR^^SURPRISE^AZ^85379||||||||||20170831000000|||||||12345678
+IN2||2|||||||||||||||||||     .00
+
+
+
+MSH|^~\&|CPSI^1.3.6.1.4.1.27248.1.17^ISO|COBALT||Cobalt Surprise - 13060 W Bell Rd, Surprise, AZ 85378|20170831125354-0500||ADT^A05^ADT_A05|2017083112535400|P|2.5.1|||AL|NE
+PID|1||^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^MR^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~S0001261^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^VN^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~00001917^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^PN^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~000000000^^^HL7&2.16.840.1.113883.4.1&ISO^SS^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO||CORDOVA^CHUCKY^^^^^L||19810713^YYYYMMDD|M||W^CAUCASIAN/WHITE^CPSI|14828 W DAHLIA DR^^SURPRISE^AZ^85379|||||S^^HL70002||S0001261^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^AN|000000000^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^SS||||||||||||||||||||||||||
+PV1|1|I/P|^^^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO||||100007^SODHI^AMANDEEP^^^DR^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^L^^^FI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~1366419988^SODHI^AMANDEEP^^^DR^^^National Provider ID&2.16.840.1.113883.4.6&ISO^L^^^NPI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~BS4686133^SODHI^AMANDEEP^^^DR^^^Drug Enforcement Agency&2.16.840.1.113883.11.19254&ISO^L^^^DEA^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|^^^^^DR^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^L^^^FI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|^^^^^DR^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^L^^^FI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|IP^INPATIENT PHYSICAL THERAPY|^^^^^^^^||||||100007^SODHI^AMANDEEP^^^DR^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^L^^^FI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~1366419988^SODHI^AMANDEEP^^^DR^^^National Provider ID&2.16.840.1.113883.4.6&ISO^L^^^NPI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~BS4686133^SODHI^AMANDEEP^^^DR^^^DEA&DEA OID&ISO^L^^^DEA^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|I/P|S0001261^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^AN^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|P|||||||||N|||||||^||||||||||         .00|         .00|         .00|0|00001917^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^PN^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|V
+PV2||||||||20170831000000||||||||||||||N|||||||||||||||N|||||||||N
+GT1|1||CORDOVA^CHUCKY||14828 W DAHLIA DR^^SURPRISE^AZ^85379^1|6235234915^PRN^PH^^1^623^5234915||19810713|M|||000000000|||1|NOT WORKING|^^^^^1||||||||||||999||||||||||||||||||||||NOT WORKING
+IN1|1|^^CPSI|P|PRIVATE PAY^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^A^P|^^^^^USA^L^^||||^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^L^|||||||CORDOVA^CHUCKY^^^^^L|18^^CPSI|19810713|14828 W DAHLIA DR^^SURPRISE^AZ^85379||||||||||20170831|||||||1234567
+IN2||1|||||||||||||||||||     .00
+IN1|2|^^CPSI|XA|MEDICAID PENDING     - I/P^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^A^XA|^^^^^USA^L^^||6024177670||^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^L^|||||||CORDOVA^CHUCKY^^^^^L|18^^CPSI|19810713|14828 W DAHLIA DR^^SURPRISE^AZ^85379||||||||||20170831000000|||||||12345678
+IN2||2|||||||||||||||||||     .00
+
+
+MSH|^~\&|CPSI^1.3.6.1.4.1.27248.1.17^ISO|COBALT||Cobalt Surprise - 13060 W Bell Rd, Surprise, AZ 85378|20170831125635-0500||ADT^A08^ADT_A01|2017083112563543|P|2.5.1|||AL|NE
+PID|1||101148^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^MR^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~S0001261^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^VN^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~00001917^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^PN^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~000000000^^^HL7&2.16.840.1.113883.4.1&ISO^SS^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO||CORDOVA^CHUCKY^^^^^L||19810713^YYYYMMDD|M||W^CAUCASIAN/WHITE^CPSI|14828 W DAHLIA DR^^SURPRISE^AZ^85379|||||S^^HL70002||S0001261^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^AN|000000000^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^SS||||||||||||||||||||||||||
+PV1|1|I/P|^^^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO||||100007^SODHI^AMANDEEP^^^DR^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^L^^^FI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~1366419988^SODHI^AMANDEEP^^^DR^^^National Provider ID&2.16.840.1.113883.4.6&ISO^L^^^NPI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~BS4686133^SODHI^AMANDEEP^^^DR^^^Drug Enforcement Agency&2.16.840.1.113883.11.19254&ISO^L^^^DEA^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|100175^IYAMU^MICHAEL^^^DR^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^L^^^FI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~1174868855^IYAMU^MICHAEL^^^DR^^^National Provider ID&2.16.840.1.113883.4.6&ISO^L^^^NPI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|^^^^^DR^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^L^^^FI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|IP^INPATIENT PHYSICAL THERAPY|^^^^^^^^||||||100007^SODHI^AMANDEEP^^^DR^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^L^^^FI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~1366419988^SODHI^AMANDEEP^^^DR^^^National Provider ID&2.16.840.1.113883.4.6&ISO^L^^^NPI^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO~BS4686133^SODHI^AMANDEEP^^^DR^^^DEA&DEA OID&ISO^L^^^DEA^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|I/P|S0001261^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^AN^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|P|||||||||N|||||||^||||||||||         .00|         .00|         .00|0|00001917^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^PN^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO|V
+PV2||||||||20170831000000||||||||||||||N|||||||||||||||N|||||||||N
+GT1|1||CORDOVA^CHUCKY||14828 W DAHLIA DR^^SURPRISE^AZ^85379^1|6235234915^PRN^PH^^1^623^5234915||19810713|M|||000000000|||1|NOT WORKING|^^^^^1||||||||||||999||||||||||||||||||||||NOT WORKING
+IN1|1|^^CPSI|P|PRIVATE PAY^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^A^P|^^^^^USA^L^^||||^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^L^|||||||CORDOVA^CHUCKY^^^^^L|18^^CPSI|19810713|14828 W DAHLIA DR^^SURPRISE^AZ^85379||||||||||20170831|||||||1234567
+IN2||1|||||||||||||||||||     .00
+IN1|2|^^CPSI|XA|MEDICAID PENDING     - I/P^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^A^XA|^^^^^USA^L^^||6024177670||^L^^^^CPSI&1.3.6.1.4.1.27248.2.1427.1&ISO^NII^COBALT REHABILITATION HOSPITAL IV&Facility OID&ISO^L^|||||||CORDOVA^CHUCKY^^^^^L|18^^CPSI|19810713|14828 W DAHLIA DR^^SURPRISE^AZ^85379||||||||||20170831000000|||||||12345678
+IN2||2|||||||||||||||||||     .00

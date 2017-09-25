@@ -1,0 +1,16 @@
+var db1 = dbConn();
+try {
+	if(resStatus =="ERROR" || resStatus =="FILTERED" ){
+		var result = db1.executeUpdate("INSERT INTO T_MESSAGES (MESSAGE_DIRECTION,MESSAGE_FORMAT,MESSAGE_DATETIME,MESSAGE_RECEIVED_DATETIME,SENDING_APPLICATION, SENDING_FACILITY,MESSAGE_TYPE,TRIGGER_EVENT, MESSAGE_CONTROLID, SRC_MESSAGE,SENT_MESSAGE,ACKNOWLEDGEMENT,HL7IMPORTSERVICE_RESPONSE,MESSAGE_STATUS,CREATE_USER,CREATE_TIMESTAMP,alerted_date_time,alerted_to,alerted_method) VALUES ('"+"INBOUND"+"','"+channelMap.get('dataType')+"','"+channelMap.get('messageDateTime')+"','"+dateString+"','"+channelMap.get('SENDING_APPLICATION')+"','"+channelMap.get('SENDING_FACILITY')+"','"+channelMap.get('messageType')+"','"+channelMap.get('triggerEvent')+"','"+channelMap.get('messageControlId')+"','" +channelMap.get('inbound')+"','"+SENT_MESSAGE+"','"+globalChannelMap.get('acknowledgement')+"','"+channelMap.get('JSON_RESPONSE')+"','"+resStatus+"','"+"mirthconnect"+"','"+dateString+"','"+dateString+"','"+"support@vaultmr.com"+"','"+"email"+"')");
+	}else {
+		var result = db1.executeUpdate("INSERT INTO T_MESSAGES (MESSAGE_DIRECTION,MESSAGE_FORMAT,MESSAGE_DATETIME,MESSAGE_RECEIVED_DATETIME,SENDING_APPLICATION, SENDING_FACILITY,MESSAGE_TYPE,TRIGGER_EVENT, MESSAGE_CONTROLID, SRC_MESSAGE,SENT_MESSAGE,ACKNOWLEDGEMENT,HL7IMPORTSERVICE_RESPONSE,MESSAGE_STATUS,CREATE_USER,CREATE_TIMESTAMP) VALUES ('"+"INBOUND"+"','"+channelMap.get('dataType')+"','"+channelMap.get('messageDateTime')+"','"+dateString+"','"+channelMap.get('SENDING_APPLICATION')+"','"+channelMap.get('SENDING_FACILITY')+"','"+channelMap.get('messageType')+"','"+channelMap.get('triggerEvent')+"','"+channelMap.get('messageControlId')+"','" +channelMap.get('inbound')+"','"+SENT_MESSAGE+"','"+globalChannelMap.get('acknowledgement')+"','"+channelMap.get('JSON_RESPONSE')+"','"+resStatus+"','"+"mirthconnect"+"','"+dateString+"')");
+	}
+ 	globalChannelMap.put('acknowledgement',"");   
+} finally {
+	if (db1) { 
+		db1.close();
+	}
+}
+
+return;
+

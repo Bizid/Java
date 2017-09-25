@@ -1,0 +1,429 @@
+{
+  "messageHeader" : {
+    "sendingApplication" : "CPSI",
+    "sendingFacility" : "COBALT",
+    "receivingApplication" : "",
+    "receivingFacility" : "Cobalt Surprise - 13060 W Bell Rd, Surprise, AZ 85378",
+    "dateTimeOfMessage" : "20170703163920-0500",
+    "security" : "",
+    "messageType" : {
+      "messageType" : "ADT",
+      "triggerEvent" : "A05"
+    },
+    "messageControlId" : "2017070316392059"
+  },
+  "patientIdentification" : {
+    "patientExternalId" : [
+      {
+        "name" : "",
+        "value" : ""
+      }
+    ],
+    "patientInternalId" : [
+      {
+        "name" : "MR",
+        "value" : "236737236"
+      },
+      {
+        "name" : "VN",
+        "value" : "343433"
+      },
+      {
+        "name" : "PN",
+        "value" : "00001750"
+      },
+      {
+        "name" : "SS",
+        "value" : "509524925"
+      }
+    ],
+    "alternatePatientId" : [
+      {
+        "name" : "",
+        "value" : ""
+      }
+    ],
+    "patientName" : [
+      {
+        "lastName" : "vasja",
+        "firstName" : "GT",
+        "middleName" : ""
+      }
+    ],
+    "dateTimeOfBirth" : "19180202000000-0000",
+    "gender" : "2",
+    "race" : [
+      {
+        "raceCode" : "F",
+        "raceDescription" : "White",
+        "codingSystem" : ""
+      }
+    ],
+    "patientAddress" : [
+      {
+        "addressType" : "",
+        "streetAddress" : "",
+        "extraAddress" : "",
+        "city" : "",
+        "stateOrProvince" : "",
+        "postalCode" : "85375"
+      }
+    ],
+    "maritalStatus" : "14",
+    "patientAccountNumber" : "343433",
+    "mothersIdentifier" : ""
+  },
+  "patientVisit" : {
+    "setId" : "1",
+    "status" : "PRE_ADMITTED",
+    "patientClass" : "",
+    "assignedPatientLocation" : {
+      "pointOfCare" : "",
+      "room" : "",
+      "bed" : "",
+      "personLocationType" : "",
+      "building" : "",
+      "floor" : ""
+    },
+    "admitSource" : "",
+    "physicians" : {
+      "1" : [
+        {
+          "idNumber" : "100007",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "FI"
+        },
+        {
+          "idNumber" : "1366419988",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "NPI"
+        },
+        {
+          "idNumber" : "BS4686133",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "DEA"
+        }
+      ],
+      "2" : [
+        {
+          "idNumber" : "100007",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "FI"
+        },
+        {
+          "idNumber" : "1366419988",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "NPI"
+        },
+        {
+          "idNumber" : "BS4686133",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "DEA"
+        }
+      ],
+      "3" : [
+        {
+          "idNumber" : "100175",
+          "lastName" : "IYAMU",
+          "firstName" : "MICHAEL",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "FI"
+        },
+        {
+          "idNumber" : "1174868855",
+          "lastName" : "IYAMU",
+          "firstName" : "MICHAEL",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "NPI"
+        }
+      ],
+      "4" : [ ]
+    },
+    "patientType" : "I/P",
+    "visitNumber" : "S0001146",
+    "admitDateTime" : "",
+    "dischargeDateTime" : "",
+    "expectedAdmitDate" : "20170703000000",
+    "precautionCode" : [
+      {
+        "id" : "",
+        "Description" : "",
+        "idCodingSystem" : ""
+      }
+    ],
+    "advancedDirective" : ""
+  },
+  "diagnosis" : [
+    {
+      "setId" : "1",
+      "diagnosisCode" : {
+        "identifier" : "T84.021A",
+        "text" : "Dislocation of internal left hip prosthesis, initial encounter",
+        "codingSystem" : "",
+        "alternateIdentifier" : "",
+        "alternateText" : "",
+        "alternateCodingSystem" : ""
+      },
+      "diagnosisPriority" : "1"
+    }
+  ],
+  "allergies" : [ ],
+  "insurance" : [
+    {
+      "setId" : "1",
+      "insuranceAvailable" : "YES",
+      "insuranceCompanyName" : "MEDICARE                    -I/P",
+      "insuranceCompanyCode" : "MEDICARE                    -I/P",
+      "groupNumber" : "",
+      "policyNumber" : "509524925A"
+    },
+    {
+      "setId" : "2",
+      "insuranceAvailable" : "YES",
+      "insuranceCompanyName" : "AARP SUPPLEMENT      -I/P",
+      "insuranceCompanyCode" : "AARP SUPPLEMENT      -I/P",
+      "groupNumber" : "",
+      "policyNumber" : "33995129011"
+    }
+  ]
+}
+
+/''''''''''/
+
+{
+  "messageHeader" : {
+    "sendingApplication" : "CPSI",
+    "sendingFacility" : "COBALT",
+    "receivingApplication" : "",
+    "receivingFacility" : "Demo facility",
+    "dateTimeOfMessage" : "20170703163159-0500",
+    "security" : "",
+    "messageType" : {
+      "messageType" : "ADT",
+      "triggerEvent" : "A01"
+    },
+    "messageControlId" : "2017070316315906"
+  },
+  "patientIdentification" : {
+    "patientExternalId" : [
+      {
+        "name" : "",
+        "value" : ""
+      }
+    ],
+    "patientInternalId" : [
+      {
+        "name" : "MR",
+        "value" : "23323232"
+      },
+      {
+        "name" : "VN",
+        "value" : "9384395"
+      },
+      {
+        "name" : "PN",
+        "value" : "00001748"
+      },
+      {
+        "name" : "SS",
+        "value" : "315360672"
+      }
+    ],
+    "alternatePatientId" : [
+      {
+        "name" : "",
+        "value" : ""
+      }
+    ],
+    "patientName" : [
+      {
+        "lastName" : "Fred",
+        "firstName" : "GT",
+        "middleName" : ""
+      }
+    ],
+    "dateTimeOfBirth" : "19671104000000-0000",
+    "gender" : "1",
+    "race" : [
+      {
+        "raceCode" : "F",
+        "raceDescription" : "White",
+        "codingSystem" : ""
+      }
+    ],
+    "patientAddress" : [
+      {
+        "addressType" : "",
+        "streetAddress" : "",
+        "extraAddress" : "",
+        "city" : "",
+        "stateOrProvince" : "",
+        "postalCode" : "85086"
+      }
+    ],
+    "maritalStatus" : "2",
+    "patientAccountNumber" : "9384395",
+    "mothersIdentifier" : ""
+  },
+  "patientVisit" : {
+    "setId" : "1",
+    "status" : "ADMITTED",
+    "patientClass" : "",
+    "assignedPatientLocation" : {
+      "pointOfCare" : "",
+      "room" : "224",
+      "bed" : "010",
+      "personLocationType" : "",
+      "building" : "",
+      "floor" : ""
+    },
+    "admitSource" : "A02",
+    "physicians" : {
+      "1" : [
+        {
+          "idNumber" : "100007",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "FI"
+        },
+        {
+          "idNumber" : "1366419988",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "NPI"
+        },
+        {
+          "idNumber" : "BS4686133",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "DEA"
+        }
+      ],
+      "2" : [
+        {
+          "idNumber" : "100007",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "FI"
+        },
+        {
+          "idNumber" : "1366419988",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "NPI"
+        },
+        {
+          "idNumber" : "BS4686133",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "DEA"
+        }
+      ],
+      "3" : [
+        {
+          "idNumber" : "100175",
+          "lastName" : "IYAMU",
+          "firstName" : "MICHAEL",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "FI"
+        },
+        {
+          "idNumber" : "1174868855",
+          "lastName" : "IYAMU",
+          "firstName" : "MICHAEL",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "NPI"
+        }
+      ],
+      "4" : [ ]
+    },
+    "patientType" : "I/P",
+    "visitNumber" : "S0001145",
+    "admitDateTime" : "20170703153000",
+    "dischargeDateTime" : "",
+    "expectedAdmitDate" : "20170703000000",
+    "precautionCode" : [
+      {
+        "id" : "",
+        "Description" : "",
+        "idCodingSystem" : ""
+      }
+    ],
+    "advancedDirective" : ""
+  },
+  "diagnosis" : [
+    {
+      "setId" : "1",
+      "diagnosisCode" : {
+        "identifier" : "G45.9",
+        "text" : "Transient cerebral ischemic attack, unspecified",
+        "codingSystem" : "",
+        "alternateIdentifier" : "",
+        "alternateText" : "",
+        "alternateCodingSystem" : ""
+      },
+      "diagnosisPriority" : "1"
+    }
+  ],
+  "allergies" : [ ],
+  "insurance" : [
+    {
+      "setId" : "1",
+      "insuranceAvailable" : "YES",
+      "insuranceCompanyName" : "UNITED HEALTHCARE     -I/P",
+      "insuranceCompanyCode" : "UNITED HEALTHCARE     -I/P",
+      "groupNumber" : "",
+      "policyNumber" : "833977801"
+    }
+  ]
+}

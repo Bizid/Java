@@ -1,0 +1,244 @@
+{
+  "messageHeader" : {
+    "sendingApplication" : "CPSI",
+    "sendingFacility" : "COBALT",
+    "receivingApplication" : "",
+    "receivingFacility" : "Cobalt Surprise - 13060 W Bell Rd, Surprise, AZ 85378",
+    "dateTimeOfMessage" : "20170707185734-0500",
+    "security" : "",
+    "messageType" : {
+      "messageType" : "ADT",
+      "triggerEvent" : "A13"
+    },
+    "messageControlId" : "2017070718573462"
+  },
+  "patientIdentification" : {
+    "patientExternalId" : [
+      {
+        "name" : "",
+        "value" : ""
+      }
+    ],
+    "patientInternalId" : [
+      {
+        "name" : "MR",
+        "value" : "AD00"
+      },
+      {
+        "name" : "VN",
+        "value" : "0235551ghg"
+      },
+      {
+        "name" : "PN",
+        "value" : "0235551ghg"
+      },
+      {
+        "name" : "SS",
+        "value" : ""
+      }
+    ],
+    "alternatePatientId" : [
+      {
+        "name" : "",
+        "value" : ""
+      }
+    ],
+    "patientName" : [
+      {
+        "lastName" : "Hailey",
+        "firstName" : "Ava",
+        "middleName" : "ANelson"
+      }
+    ],
+    "dateTimeOfBirth" : "19830306000000-0000",
+    "gender" : "1",
+    "race" : [
+      {
+        "raceCode" : "F",
+        "raceDescription" : "White",
+        "codingSystem" : ""
+      }
+    ],
+    "patientAddress" : [
+      {
+        "addressType" : "",
+        "streetAddress" : "",
+        "extraAddress" : "",
+        "city" : "",
+        "stateOrProvince" : "",
+        "postalCode" : "16412"
+      }
+    ],
+    "maritalStatus" : "6",
+    "patientAccountNumber" : "0235551ghg",
+    "mothersIdentifier" : ""
+  },
+  "patientVisit" : {
+    "setId" : "1",
+    "status" : "ADMITTED",
+    "patientClass" : "",
+    "assignedPatientLocation" : {
+      "pointOfCare" : "",
+      "room" : "226",
+      "bed" : "010",
+      "personLocationType" : "",
+      "building" : "",
+      "floor" : ""
+    },
+    "admitSource" : "A02",
+    "physicians" : {
+      "1" : [
+        {
+          "idNumber" : "100007",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "FI"
+        },
+        {
+          "idNumber" : "1366419988",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "NPI"
+        },
+        {
+          "idNumber" : "BS4686133",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "DEA"
+        }
+      ],
+      "2" : [
+        {
+          "idNumber" : "100007",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "FI"
+        },
+        {
+          "idNumber" : "1366419988",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "NPI"
+        },
+        {
+          "idNumber" : "BS4686133",
+          "lastName" : "SODHI",
+          "firstName" : "AMANDEEP",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "DEA"
+        }
+      ],
+      "3" : [
+        {
+          "idNumber" : "100175",
+          "lastName" : "IYAMU",
+          "firstName" : "MICHAEL",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "FI"
+        },
+        {
+          "idNumber" : "1174868855",
+          "lastName" : "IYAMU",
+          "firstName" : "MICHAEL",
+          "middleName" : "",
+          "suffix" : "",
+          "prefix" : "DR",
+          "identifierType" : "NPI"
+        }
+      ],
+      "4" : [ ]
+    },
+    "patientType" : "I/P",
+    "visitNumber" : "44343",
+    "admitDateTime" : "20170531140000",
+    "dischargeDateTime" : "",
+    "expectedAdmitDate" : "20170531000000",
+    "precautionCode" : [
+      {
+        "id" : "",
+        "Description" : "",
+        "idCodingSystem" : ""
+      }
+    ],
+    "advancedDirective" : ""
+  },
+  "diagnosis" : [
+    {
+      "setId" : "1",
+      "diagnosisCode" : {
+        "identifier" : "S12.500D",
+        "text" : "Unspecified displaced fracture of sixth cervical vertebra, subsequent encounter for fracture with routine healing",
+        "codingSystem" : "",
+        "alternateIdentifier" : "",
+        "alternateText" : "",
+        "alternateCodingSystem" : ""
+      },
+      "diagnosisPriority" : "1"
+    },
+    {
+      "setId" : "2",
+      "diagnosisCode" : {
+        "identifier" : "G82.50",
+        "text" : "Quadriplegia",
+        "codingSystem" : "",
+        "alternateIdentifier" : "",
+        "alternateText" : "",
+        "alternateCodingSystem" : ""
+      },
+      "diagnosisPriority" : "1"
+    },
+    {
+      "setId" : "3",
+      "diagnosisCode" : {
+        "identifier" : "S06.5X0D",
+        "text" : "Traumatic subdural hemorrhage without loss of consciousness, subsequent encounter",
+        "codingSystem" : "",
+        "alternateIdentifier" : "",
+        "alternateText" : "",
+        "alternateCodingSystem" : ""
+      },
+      "diagnosisPriority" : "1"
+    }
+  ],
+  "allergies" : [
+    {
+      "setId" : "1",
+      "allergyType" : "1",
+      "allergyCode" : "00000983",
+      "allergyDescription" : "HYDROCODONE",
+      "allergySeverityCode" : "1",
+      "allergySeverityDescription" : "Unknown",
+      "allergyReactionCode" : "",
+      "allergyReactionDescription" : ""
+    }
+  ],
+  "insurance" : [
+    {
+      "setId" : "1",
+      "insuranceAvailable" : "YES",
+      "insuranceCompanyName" : "MERCY CARE MEDICAID  - I/P",
+      "insuranceCompanyCode" : "MERCY CARE MEDICAID  - I/P",
+      "groupNumber" : "",
+      "policyNumber" : "358738378"
+    }
+  ]
+}
