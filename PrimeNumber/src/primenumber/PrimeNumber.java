@@ -69,7 +69,7 @@ public class PrimeNumber {
         primeOrNo(unsorted,n);
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
-        System.out.println("Test "+ duration + "ms");
+        //System.out.println("Test "+ duration + "ms");
 //int nr1 =1003;
 //int nr2 = 2;
   //      System.out.println(Math.round((1 * nr1) / nr2 * 10)/10);

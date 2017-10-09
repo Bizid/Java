@@ -24,7 +24,7 @@ public class SortingBubble {
 
         int endPosition = x.length - 1;
         int swapPosition;
-
+        int numSwaps =0;
         while( endPosition > 0 ) {
             swapPosition = 0;
 
@@ -37,6 +37,7 @@ public class SortingBubble {
                     x[i + 1] = tmp;
 
                     swapPosition = i;
+                    numSwaps++;
                 } // end if
 
                 printArray("Current", x);
@@ -46,6 +47,9 @@ public class SortingBubble {
         } // end while
 
         printArray("Sorted", x);
+        System.out.println("Number:" + numSwaps);
+        System.out.println("First:" + x[0]);
+        System.out.println("Last:" + x[x.length - 1]);
     } // end bubbleSort
     
     public static void main(String[] args) {

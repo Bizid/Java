@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="MultiplicationTest.jar" size="6214" download="eager" />
+    <jar href="MultiplicationTest.jar" size="18249000" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="MultiplicationTest" >
     <param name="requiredFXVersion" value="8.0+"/>

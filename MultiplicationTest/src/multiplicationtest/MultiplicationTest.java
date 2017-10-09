@@ -3,18 +3,27 @@
  */
 package multiplicationtest;
 
+import java.awt.event.KeyEvent;
 import java.util.Scanner;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  *
@@ -50,14 +59,20 @@ public class MultiplicationTest extends Application {
         Pane rootStartText = new Pane();
         startText.setLayoutX(50);
         startText.setLayoutY(200);
+        
+        //ff
+        
+        
         rootStartText.getChildren().add(startText);
         root.getChildren().add(rootStartText);
         root.getChildren().add(btn);
-
+        
+        
         Scene scene = new Scene(root, 500, 550);
         
         primaryStage.setTitle("Multiplication 50 facts");
         primaryStage.setScene(scene);
+        
         primaryStage.show();
     }
     
@@ -70,12 +85,10 @@ public class MultiplicationTest extends Application {
         if(guess == (leftPart*rightPart)){
             System.out.println("You are right");
             resStatus = "You are right";
-           // resultStatus.setText("You are right");
             score++;
         } else{
             System.out.println("Sorry it's not correct");
             resStatus = "Sorry it's not correct";
-            //resultStatus.setText("Sorry it's not correct");
         }
         scoreValue.setText(Integer.toString(score));
         inputLeftNumber.setText(Integer.toString(a));
@@ -90,7 +103,29 @@ public class MultiplicationTest extends Application {
             gameOver(primaryStage);
         }
     }
-    
+    public static boolean isInteger(String str) {
+    if (str == null) {
+        return false;
+    }
+    int length = str.length();
+    if (length == 0) {
+        return false;
+    }
+    int i = 0;
+    if (str.charAt(0) == '-') {
+        if (length == 1) {
+            return false;
+        }
+        i = 1;
+    }
+    for (; i < length; i++) {
+        char c = str.charAt(i);
+        if (c < '0' || c > '9') {
+            return false;
+        }
+    }
+    return true;
+}
     
     //gameCycle
     private void gameCycle(Stage primaryStage){
@@ -168,7 +203,7 @@ public class MultiplicationTest extends Application {
         Pane rootBtn = new Pane();
         submitBtn.setLayoutX(350);
         submitBtn.setLayoutY(263);
-        rootBtn.getChildren().add(submitBtn);
+       // rootBtn.getChildren().add(submitBtn);
         newRoot.getChildren().addAll(resLabel,rootLeftLabel,rootRightLabel,rootLabel,rootScoreLabel,rootScoreValue,rootTimeLabel ,rootTimeValue);
         newRoot.getChildren().add(result1);
         newRoot.getChildren().add(rootBtn);
@@ -179,13 +214,38 @@ public class MultiplicationTest extends Application {
         primaryStage.setScene(scene);
 
         primaryStage.show();
+        result1.setOnKeyPressed(event -> {
+            if(event.getCode() == KeyCode.ENTER){
+              //type here what you want
+              
+              
+              if (isInteger(result1.getText()))
+                {
+                   validateAnswer(resultStatus, inputLeftText,inputRightText,result1,scoreValue, primaryStage);
+                    endTime = System.currentTimeMillis();
+                      duration = endTime - startTime;
+                      timeValue.setText(Long.toString(duration));
+                      if(duration < 60000){
+                          System.out.println(duration);
+                          gameCycle(primaryStage);
+                      }else{
+                          System.out.println("Game Over");
+                          gameOver(primaryStage);
+                      }
+                }else{
+              gameCycle(primaryStage);
+              }
+              
+            }
+         }); 
+
         submitBtn.setOnAction(e -> validateAnswer(resultStatus, inputLeftText,inputRightText,result1,scoreValue, primaryStage));
 
         if(submitBtn.isPressed()){
             endTime = System.currentTimeMillis();
             duration = endTime - startTime;
             timeValue.setText(Long.toString(duration));
-            if(duration < 60000){
+            if(duration < 10000){
                 System.out.println(duration);
                 gameCycle(primaryStage);
             }else{
@@ -202,7 +262,24 @@ public class MultiplicationTest extends Application {
                 
         Label scoreLabel = new Label("Your final score is:");
         Label scoreValue = new Label(Integer.toString(score));
-       
+        Media pick = new Media(getClass().getResource("Smooth.mp3").toExternalForm());
+        MediaPlayer player = new MediaPlayer(pick);
+        if(score > 30){
+        
+        player.play();
+        
+        MediaView mediaView = new MediaView(player);
+        player.setStopTime(Duration.seconds(20));
+        Image image = new Image(getClass().getResource("giphy.gif").toExternalForm());
+        ImageView view = new ImageView(image);
+        
+        view.setLayoutX(50);
+        view.setLayoutY(10);
+        newRoot.getChildren().add(view);
+        newRoot.getChildren().add(mediaView);
+        
+        }
+        
         Pane rootScoreLabel = new Pane();
         scoreLabel.setLayoutX(50);
         scoreLabel.setLayoutY(400);
@@ -216,17 +293,18 @@ public class MultiplicationTest extends Application {
         Label startText = new Label("Press this button if you want to play again:");
         Pane rstartText = new Pane();
         startText.setLayoutX(50);
-        startText.setLayoutY(200);
+        startText.setLayoutY(50);
         rstartText.getChildren().add(startText);
 
         Button replayBtn = new Button("rePlay");
 
         Pane rootBtn = new Pane();
         replayBtn.setLayoutX(350);
-        replayBtn.setLayoutY(263);
+        replayBtn.setLayoutY(63);
         rootBtn.getChildren().add(replayBtn);
 
-
+       
+        
         newRoot.getChildren().addAll(rootScoreLabel,rootScoreValue ,rstartText);
         newRoot.getChildren().add(rootBtn);
 
@@ -238,6 +316,9 @@ public class MultiplicationTest extends Application {
 
                 startTime = System.currentTimeMillis();
                 score = 0;
+                
+     
+                primaryStage.close();
                 gameCycle(primaryStage);
 
             }
@@ -245,7 +326,7 @@ public class MultiplicationTest extends Application {
         });
         Scene scene = new Scene(newRoot, 500, 550);
 
-        primaryStage.setTitle("Multiplication 50 facts");
+        primaryStage.setTitle("Multiplication 50 facts");   
 
         primaryStage.setScene(scene);
 
